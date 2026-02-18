@@ -1,5 +1,9 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 📧 E-posta Desteği
+  - name: 📧 Lisans ve Satış Desteği
     url: mailto:destek@gulsen.dev
-    about: Lisans veya satış öncesi sorularınız için bize ulaşın.
+    about: "Lisans yenileme, teklif alma veya satış öncesi sorularınız için."
+
+  - name: 🔒 Güvenlik Bildirimi
+    url: mailto:destek@gulsen.dev
+    about: "Sistemde kritik bir güvenlik açığı fark ettiyseniz buradan bildirin."

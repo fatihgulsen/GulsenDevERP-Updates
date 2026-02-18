@@ -1,19 +1,19 @@
-name: 📊 Veri Hatası / Hesaplama Yanlışlığı
-description: "Veriler, hesaplamalar veya raporlar yanlış mı?"
-title: "[DATA] "
+name: 📊 Hesaplama / Bakiye Yanlış
+description: "Rakamlar tutmuyor, hesap yanlış" diyorsanız.
+title: "[HESAP] "
 labels: ["data-integrity", "critical", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## 📊 Veri Doğruluk Bildirimi
-        **Bu bölüm kritiktir.** Hesaplama veya raporlama hataları için lütfen somut örnek verin.
+        ## 📊 Hesaplama Hatası Bildirimi
+        "Burası 100 TL olması gerekirken 90 TL çıkıyor" gibi durumları buradan bildirin.
 
   - type: input
     id: license
     attributes:
       label: Müşteri No / Lisans Anahtarı
-      description: Sorunun önceliklendirilmesi için gereklidir.
+      description: Destek paketinizin doğrulanması için gereklidir.
       placeholder: "Örn: GULSEN-2024-XXXX"
     validations:
       required: true
@@ -21,41 +21,39 @@ body:
   - type: dropdown
     id: impact
     attributes:
-      label: Sorunun Etkisi
-      description: Bu hata finansal veya operasyonel risk yaratıyor mu?
+      label: Hata Nerede?
       options:
-        - 🔴 E-Fatura/Muhasebe Kaydı Yanlış (Kritik)
-        - 🟠 Stok Miktarı Hatalı (Önemli)
-        - 🟡 Rapordaki Toplam Yanlış
-        - 🟢 Sadece Ekranda Yanlış Görünüyor
-    validations:
-      required: true
+        - Muhasebe Bakiyesi Yanlış (Kritik)
+        - Stok Miktarı Yanlış
+        - Rapordaki Toplam Yanlış
+        - Fatura KDV/Toplam Hesabı Yanlış
+        - Diğer
 
-  - type: textarea
-    id: record_id
+  - type: input
+    id: record_ref
     attributes:
-      label: Kayıt Numarası / Belge No
-      description: Hatalı olan kaydın numarası nedir? (Fatura No, Sipariş No vb.)
-      placeholder: "FAT-2024-00123 numaralı fatura..."
+      label: Hangi Kayıtta?
+      description: Sorunlu olan Fatura No, Sipariş No veya Stok Kodu nedir?
+      placeholder: "FAT-2024-00123..."
     validations:
       required: true
 
   - type: textarea
     id: calculation
     attributes:
-      label: Hesaplama Detayı
+      label: Ne Olması Gerekiyordu?
       description: |
-        Neyin yanlış olduğunu düşünüyorsunuz?
-        Örnek: "KDV dahil 120 TL olması gerekirken 118 TL hesaplıyor."
-      placeholder: "Beklenen: 120 TL, Hesaplanan: 118 TL..."
+        Sizce doğru rakam ne? Program ne gösteriyor?
+        Örnek: "Alt toplam 100 TL, KDV 20 TL iken Toplam 120 TL olmalı ama 118 TL yazıyor."
+      placeholder: "Doğrusu: ... , Programdaki Hatalı: ..."
     validations:
       required: true
 
   - type: textarea
-    id: recent_changes
+    id: evidence
     attributes:
-      label: Son Yapılan Değişiklikler
-      description: Bu hata öncesinde bir güncelleme yapıldı mı veya ayar değiştirildi mi?
-      placeholder: "Dün KDV oranlarını güncellemiştik, ondan sonra oldu..."
+      label: Resim / Ekran Görüntüsü
+      description: Yanlış olan yerin resmini buraya yapıştırın.
+      placeholder: "Resmi buraya yapıştırın (CTRL+V)..."
     validations:
       required: false

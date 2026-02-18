@@ -1,15 +1,15 @@
-name: 🐞 Hata Bildirimi (Gelişmiş)
-description: Teknik veya işleyişle ilgili bir sorun bildirin.
-title: "[BUG] "
+name: 🐞 Bir Sorun Bildir
+description: Program çalışırken hata mı verdi? Buradan bildirin.
+title: "[HATA] "
 labels: ["bug", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## 👋 Hata Bildirim Formu
-        Lütfen aşağıdaki alanları eksiksiz doldurun. Bu form sadece **aktif lisanslı müşterilerimiz** içindir.
-
-        > **Not:** Güvenlik açığı bildirimleri için lütfen doğrudan `destek@gulsen.dev` adresine yazın.
+        ## 👋 Sorun Bildirim Formu
+        Yaşadığınız sorunu çözmemiz için lütfen aşağıdaki soruları cevaplayın.
+        
+        > **İpucu:** Sorunu ne kadar net anlatırsanız o kadar hızlı çözeriz.
 
   - type: input
     id: license
@@ -23,92 +23,59 @@ body:
   - type: dropdown
     id: severity
     attributes:
-      label: Aciliyet Durumu
-      description: Bu sorun iş süreçlerinizi ne kadar etkiliyor?
+      label: Ne Kadar Acil?
+      description: Bu sorun işinizi yapmanıza engel oluyor mu?
       options:
-        - 🔴 Kritik (Sistem tamamen durdu / Veri kaybı riski)
-        - 🟠 Yüksek (Ana fonksiyonlar çalışmıyor)
-        - 🟡 Orta (Bazı fonksiyonlar hatalı ama işleyiş sürüyor)
-        - 🟢 Düşük (Kozmetik sorun / Küçük hata)
+        - 🔴 Çok Acil (İşlem yapamıyorum, işim durdu)
+        - 🟠 Önemli (Bazı özellikler çalışmıyor ama idare ediyorum)
+        - 🟡 Normal (Hata var ama çalışmaya engel değil)
+        - 🟢 Düşük (Görsel sorun / Yazım hatası)
     validations:
       required: true
 
   - type: dropdown
     id: module
     attributes:
-      label: İlgili Modül
-      description: Sorunun yaşandığı modülü seçin.
+      label: İlgili Bölüm
+      description: Hangi ekranda sorun yaşıyorsunuz?
       options:
-        - Stok Yönetimi
-        - Satış & Pazarlama
+        - Stok İşlemleri
+        - Satış & Fatura
         - Satınalma
         - Üretim
-        - Finans / Muhasebe
-        - İnsan Kaynakları
-        - Sistem / Altyapı
+        - Muhasebe / Finans
+        - Personel
+        - Ayarlar
         - Diğer
-    validations:
-      required: true
-
-  - type: dropdown
-    id: frequency
-    attributes:
-      label: Hata Sıklığı
-      description: Bu hatayla ne sıklıkla karşılaşıyorsunuz?
-      options:
-        - Her seferinde (Her denemede oluyor)
-        - Sık sık (Çoğu zaman oluyor)
-        - Nadiren (Bazen oluyor)
-        - Sadece bir kez oldu
     validations:
       required: true
 
   - type: textarea
     id: description
     attributes:
-      label: Hata Detayı
-      description: Sorunu mümkün olduğunca detaylı açıklayın.
-      placeholder: "Stok kartı kaydederken 'Bağlantı hatası' alıyorum..."
+      label: Sorun Nedir?
+      description: Ne yapmaya çalışıyordunuz ve program ne yaptı?
+      placeholder: "Fatura kaydet tuşuna basınca hiçbir şey olmuyor..."
     validations:
       required: true
 
   - type: textarea
     id: steps
     attributes:
-      label: Tekrarlama Adımları
-      description: Bizim de aynı hatayı alabilmemiz için hangi adımları izlemeliyiz?
+      label: Nasıl Oldu?
+      description: Biz de denersek aynı hatayı alır mıyız? Adımları yazar mısınız?
       placeholder: |
-        1. 'Stok Kartları' ekranını açtım.
-        2. 'Yeni Ekle' butonuna bastım.
-        3. Ürün koduna 'TR-001' yazdım ve Kaydet dedim.
-        4. O anda hata mesajı çıktı.
+        1. Fatura ekranını açtım.
+        2. Müşteriyi seçtim.
+        3. Kaydet dedim ve hata mesajı çıktı.
     validations:
       required: true
 
   - type: textarea
-    id: environment
-    attributes:
-      label: Ortam Bilgileri
-      description: Hangi işletim sistemi veya cihazda yaşanıyor?
-      placeholder: "Windows 11, 1920x1080 çözünürlük, Kablolu ağ bağlantısı..."
-    validations:
-      required: false
-
-  - type: textarea
     id: media
     attributes:
-      label: Ekran Görüntüsü / Video
-      description: |
-        Varsa hatanın ekran görüntüsünü veya videosunu buraya sürükleyip bırakabilirsiniz.
-        Görsel eklemek sorunu daha hızlı çözmemize yardımcı olur.
-      placeholder: "Buraya resim yapıştırın veya sürükleyin..."
+      label: Ekran Görüntüsü
+      description: Varsa hatanın fotoğrafını veya ekran görüntüsünü buraya yapıştırın.
+      placeholder: "Resmi buraya yapıştırın..."
     validations:
       required: false
-
-  - type: checkboxes
-    id: terms
-    attributes:
-      label: Onay
-      options:
-        - label: Yazdığım bilgilerin doğruluğunu beyan ederim.
-          required: true
