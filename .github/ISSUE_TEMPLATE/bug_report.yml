@@ -1,0 +1,62 @@
+name: 🐛 Hata Bildirimi (Müşteriler İçin)
+description: Sadece aktif lisansı bulunan müşterilerimiz içindir.
+title: "[BUG] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### ⚠️ Dikkat
+        Bu form sadece **aktif lisanslı müşterilerimizden** gelen hata bildirimleri içindir.
+        Lisanssız veya demo kullanımları için lütfen `destek@gulsen.dev` adresine e-posta gönderin.
+
+  - type: input
+    id: license
+    attributes:
+      label: Müşteri No / Lisans Anahtarı
+      description: Size verilen lisans anahtarını veya müşteri numaranızı girin.
+      placeholder: "Örn: GULSEN-12345 veya Lisans: XXXX-XXXX"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: Uygulama Sürümü
+      description: Hatanın oluştuğu sürümü seçin.
+      options:
+        - v1.5.1-beta.1
+        - v1.5.0
+        - v1.4.1
+        - Diğer (Belirtin)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Hata Detayı
+      description: Sorunu detaylıca açıklayın. Ne yaparken hata aldınız?
+      placeholder: "Stok kartını kaydederken 'Bağlantı koptu' hatası alıyorum..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Tekrarlama Adımları
+      description: Hatayı tekrar oluşturmak için hangi adımları izlemeliyiz?
+      placeholder: |
+        1. Stok Modülüne girin
+        2. Yeni Kayıt butonuna basın
+        3. ...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: environment
+    attributes:
+      label: Ortam Bilgileri
+      options:
+        - label: İnternet bağlantım var
+        - label: Yönetici (Admin) yetkisiyle çalıştırıyorum
