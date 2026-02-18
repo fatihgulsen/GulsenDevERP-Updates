@@ -30,6 +30,12 @@ jobs:
 
           ${{ github.event.issue.body }}"
 
+          # Ensure label exists (ignore error if it already exists)
+          gh label create "user-report" \
+            --repo "fatihgulsen/Gulsen.dev-ERP" \
+            --description "Kullanıcı tarafından bildirilen sorunlar" \
+            --color "FBCA04" || true
+
           gh issue create \
             --repo "fatihgulsen/Gulsen.dev-ERP" \
             --title "[Kullanıcı] ${{ github.event.issue.title }}" \
