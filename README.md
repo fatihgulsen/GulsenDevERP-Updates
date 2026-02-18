@@ -69,6 +69,7 @@ Hayır. Tüm veriler merkezi sunucuda saklanır; güncelleme veya yeniden kurulu
 ## 📞 Destek
 
 - 📧 **E-posta:** destek@gulsen.dev
+- 🐛 **Hata Bildirimi:** Bu repoda [yeni bir Issue açın](../../issues/new) — ekibimiz otomatik olarak bilgilendirilir.
 
 ---
 

@@ -1,0 +1,48 @@
+name: Mirror Issue to Main Repo
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  mirror:
+    name: Mirror Issue to Private Repo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Issue in Main Repo
+        env:
+          MAIN_REPO_TOKEN: ${{ secrets.MAIN_REPO_TOKEN }}
+        run: |
+          # Build a body that includes original issue metadata
+          ORIGINAL_URL="${{ github.event.issue.html_url }}"
+          ORIGINAL_AUTHOR="${{ github.event.issue.user.login }}"
+          ORIGINAL_BODY=$(cat << 'BODY_EOF'
+          ${{ github.event.issue.body }}
+          BODY_EOF
+          )
+
+          FULL_BODY="**📥 Kullanıcı bildirimi (Updates Repo'dan aktarıldı)**
+
+          > Orijinal issue: $ORIGINAL_URL
+          > Bildiren: @$ORIGINAL_AUTHOR
+
+          ---
+
+          ${{ github.event.issue.body }}"
+
+          gh issue create \
+            --repo "fatihgulsen/Gulsen.dev-ERP" \
+            --title "[Kullanıcı] ${{ github.event.issue.title }}" \
+            --body "$FULL_BODY" \
+            --label "user-report"
+
+      - name: Comment on Original Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `✅ Bildiriminiz alındı! Ekibimiz en kısa sürede inceleyecektir.\n\n📧 Acil durumlar için: **destek@gulsen.dev**`
+            });
