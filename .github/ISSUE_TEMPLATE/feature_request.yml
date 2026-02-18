@@ -1,0 +1,85 @@
+name: 💡 Özellik İsteği
+description: İşinizi kolaylaştıracak yeni bir özellik önerin.
+title: "[FEAT] "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 👋 Özellik İstek Formu
+        Bu form sadece **aktif lisanslı müşterilerimiz** içindir. Özellik talepleriniz ürün geliştirme ekibimiz tarafından değerlendirilecektir.
+
+  - type: input
+    id: license
+    attributes:
+      label: Müşteri No / Lisans Anahtarı
+      description: Talebinizin önceliklendirilmesi için gereklidir.
+      placeholder: "Örn: GULSEN-2024-XXXX"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: İlgili Modül
+      description: Bu özellik hangi modülde olmalı?
+      options:
+        - Stok Yönetimi
+        - Satış & Pazarlama
+        - Satınalma
+        - Üretim
+        - Finans / Muhasebe
+        - İnsan Kaynakları
+        - Raporlama / Analiz
+        - Mobil Uygulama
+        - Diğer
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Mevcut Durum / Sorun
+      description: Şu an bu işi nasıl yapıyorsunuz ve ne gibi zorluklar yaşıyorsunuz?
+      placeholder: "Şu anda satış faturalarını tek tek kesmek zorunda kalıyoruz, bu da günde 2 saat zaman kaybına neden oluyor..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Önerilen Çözüm
+      description: Nasıl bir özellik hayal ediyorsunuz?
+      placeholder: "Seçilen irsaliyeleri tek tuşla toplu faturalaştırma özelliği eklenirse işlem süresi 5 dakikaya düşecektir..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: İş Önceliği
+      description: Bu özellik işiniz için ne kadar kritik?
+      options:
+        - 🟢 Olsa güzel olur (Nice to have)
+        - 🟡 Önemli (Verimliliği artırır)
+        - 🟠 Çok Önemli (Rekabet avantajı sağlar)
+        - 🔴 Kritik (Olmazsa olmaz / Blokaj yaratıyor)
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternative
+    attributes:
+      label: Alternatif Çözümler
+      description: Aklınıza gelen başka çözüm yolları var mı?
+      placeholder: "Excel ile yapmayı denedik ama takibi zor oluyor..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Onay
+      options:
+        - label: Bu özelliğin tüm müşteriler için geliştirilebileceğini kabul ediyorum.
+          required: true

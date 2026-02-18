@@ -1,21 +1,52 @@
-name: 🐛 Hata Bildirimi (Müşteriler İçin)
-description: Sadece aktif lisansı bulunan müşterilerimiz içindir.
+name: � Hata Bildirimi
+description: Karşılaştığınız bir sorunu detaylı şekilde raporlayın.
 title: "[BUG] "
 labels: ["bug", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        ### ⚠️ Dikkat
-        Bu form sadece **aktif lisanslı müşterilerimizden** gelen hata bildirimleri içindir.
-        Lisanssız veya demo kullanımları için lütfen `destek@gulsen.dev` adresine e-posta gönderin.
+        ## 👋 Hata Bildirim Formu
+        Lütfen aşağıdaki alanları eksiksiz doldurun. Bu form sadece **aktif lisanslı müşterilerimiz** içindir.
+        
+        > **Not:** Güvenlik açığı bildirimleri için lütfen doğrudan `destek@gulsen.dev` adresine yazın.
 
   - type: input
     id: license
     attributes:
       label: Müşteri No / Lisans Anahtarı
-      description: Size verilen lisans anahtarını veya müşteri numaranızı girin.
-      placeholder: "Örn: GULSEN-12345 veya Lisans: XXXX-XXXX"
+      description: Destek paketinizin doğrulanması için gereklidir.
+      placeholder: "Örn: GULSEN-2024-XXXX"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Aciliyet Durumu
+      description: Bu sorun iş süreçlerinizi ne kadar etkiliyor?
+      options:
+        - 🔴 Kritik (Sistem tamamen durdu / Veri kaybı riski)
+        - 🟠 Yüksek (Ana fonksiyonlar çalışmıyor)
+        - 🟡 Orta (Bazı fonksiyonlar hatalı ama işleyiş sürüyor)
+        - 🟢 Düşük (Kozmetik sorun / Küçük hata)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: İlgili Modül
+      description: Sorunun yaşandığı modülü seçin.
+      options:
+        - Stok Yönetimi
+        - Satış & Pazarlama
+        - Satınalma
+        - Üretim
+        - Finans / Muhasebe
+        - İnsan Kaynakları
+        - Sistem / Altyapı
+        - Diğer
     validations:
       required: true
 
@@ -23,12 +54,13 @@ body:
     id: version
     attributes:
       label: Uygulama Sürümü
-      description: Hatanın oluştuğu sürümü seçin.
+      description: Kullandığınız versiyonu seçin (Giriş ekranında yazar).
       options:
         - v1.5.1-beta.1
         - v1.5.0
         - v1.4.1
-        - Diğer (Belirtin)
+        - v1.4.0
+        - Daha eski
     validations:
       required: true
 
@@ -36,8 +68,8 @@ body:
     id: description
     attributes:
       label: Hata Detayı
-      description: Sorunu detaylıca açıklayın. Ne yaparken hata aldınız?
-      placeholder: "Stok kartını kaydederken 'Bağlantı koptu' hatası alıyorum..."
+      description: Sorunu mümkün olduğunca detaylı açıklayın.
+      placeholder: "Stok kartı kaydederken 'Bağlantı hatası' alıyorum..."
     validations:
       required: true
 
@@ -45,18 +77,37 @@ body:
     id: steps
     attributes:
       label: Tekrarlama Adımları
-      description: Hatayı tekrar oluşturmak için hangi adımları izlemeliyiz?
+      description: Bizim de aynı hatayı alabilmemiz için hangi adımları izlemeliyiz?
       placeholder: |
-        1. Stok Modülüne girin
-        2. Yeni Kayıt butonuna basın
-        3. ...
+        1. 'Stok Kartları' ekranını açtım.
+        2. 'Yeni Ekle' butonuna bastım.
+        3. Ürün koduna 'TR-001' yazdım ve Kaydet dedim.
+        4. O anda hata mesajı çıktı.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Beklenen Davranış
+      description: Normalde ne olmasını bekliyordunuz?
+      placeholder: "Kayıt işleminin başarıyla tamamlanıp liste ekranına dönmesi gerekiyordu."
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Hata Kayıtları (Varsa)
+      description: Varsa hata mesajını veya log dosyasının içeriğini buraya yapıştırın.
+      render: shell
     validations:
       required: false
 
   - type: checkboxes
-    id: environment
+    id: terms
     attributes:
-      label: Ortam Bilgileri
+      label: Onay
       options:
-        - label: İnternet bağlantım var
-        - label: Yönetici (Admin) yetkisiyle çalıştırıyorum
+        - label: Yazdığım bilgilerin doğruluğunu beyan ederim.
+          required: true
