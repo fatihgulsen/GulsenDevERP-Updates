@@ -1,14 +1,14 @@
 {
+  "Size": 183624088,
+  "ReleaseDate": "2026-02-18T13:12:36Z",
   "Version": {
-    "Version": "1.5.0",
-    "BuildDate": "20260218",
-    "Channel": "beta"
+    "Channel": "beta",
+    "Version": "1.5.1-beta.1",
+    "BuildDate": "20260218"
   },
-  "IsMandatory": false,
-  "ReleaseDate": "2026-02-18T12:00:43Z",
-  "DownloadUrl": "https://github.com/fatihgulsen/Gulsen.dev-ERP/releases/download/v1.5.0/update.zip",
-  "Size": 183503415,
-  "Checksum": "A7ED02A772AEC2632FD9B3850D916EC2C82E4897C222EEABA55FABC31A9F8081",
+  "Checksum": "460B14EA8EBD50ECC6FEB244D336B333A2ABDD3D61EC1F7E5DC85F98CBDC2205",
+  "DownloadUrl": "https://github.com/fatihgulsen/GulsenDevERP-Updates/releases/download/v1.5.1-beta.1/GulsenDevERP-1.5.1-beta.1.zip",
+  "ReleaseNotes": "### Added\r\n\r\n- **Login Audit Trail & Hardware Tracking**:\r\n  - **Historical Logging**: Introduced `KullaniciGirisLog` entity to track every login attempt with full historical data.\r\n  - **Hardware Fingerprinting**: Captures CPU ID and Motherboard Serial Number in WinForms to generate a unique Hardware Hash for security auditing.\r\n  - **Network Tracking**: Logs both Local and Public IP addresses for every session.\r\n  - **XAF Audit Integration**: Mirrored login events into XAF's native `AuditTrailService` for a unified administrative view.\r\n\r\n---",
   "RequiredMigrations": [],
-  "ReleaseNotes": "Automated release 1.5.0"
+  "IsMandatory": false
 }
