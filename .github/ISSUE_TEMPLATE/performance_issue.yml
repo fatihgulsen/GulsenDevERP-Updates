@@ -1,0 +1,62 @@
+name: ⚡ Performans Sorunu
+description: "Sistemde yavaşlık mı var? Buradan bildirin."
+title: "[PERF] "
+labels: ["performance", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🚀 Performans Bildirimi
+        Sistemin yavaş çalıştığı durumları analiz etmemiz için detaylara ihtiyacımız var.
+
+  - type: input
+    id: license
+    attributes:
+      label: Müşteri No / Lisans Anahtarı
+      description: Sorunun önceliklendirilmesi için gereklidir.
+      placeholder: "Örn: GULSEN-2024-XXXX"
+    validations:
+      required: true
+  
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Etki Alanı
+      description: Bu yavaşlık kimi etkiliyor?
+      options:
+        - Sadece bende oluyor
+        - Ofisteki birkaç kişide oluyor
+        - Tüm şirkette sistem yavaş
+    validations:
+      required: true
+
+  - type: textarea
+    id: slow_operation
+    attributes:
+      label: Yavaş Olan İşlem Nedir?
+      description: Hangi ekranda, hangi butona basınca yavaşlık yaşanıyor?
+      placeholder: "Fatura listesini açarken 30 saniye bekliyor..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: timing
+    attributes:
+      label: Ne Zaman Oluyor?
+      description: Yavaşlığın belirli bir zamanı var mı?
+      options:
+        - Her zaman yavaş
+        - Sabahları yoğun saatlerde
+        - Belirli raporları çekerken
+        - Rastgele zamanlarda
+    validations:
+      required: true
+
+  - type: textarea
+    id: specs
+    attributes:
+      label: Donanım Bilgisi (İsteğe Bağlı)
+      description: Kullandığınız bilgisayarın özellikleri (RAM, İşlemci vs.)
+      placeholder: "16GB RAM, i7 İşlemci, SSD Disk..."
+    validations:
+      required: false

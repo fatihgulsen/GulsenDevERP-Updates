@@ -1,5 +1,5 @@
-name: � Hata Bildirimi
-description: Karşılaştığınız bir sorunu detaylı şekilde raporlayın.
+name: 🐞 Hata Bildirimi (Gelişmiş)
+description: Teknik veya işleyişle ilgili bir sorun bildirin.
 title: "[BUG] "
 labels: ["bug", "triage"]
 body:
@@ -8,7 +8,7 @@ body:
       value: |
         ## 👋 Hata Bildirim Formu
         Lütfen aşağıdaki alanları eksiksiz doldurun. Bu form sadece **aktif lisanslı müşterilerimiz** içindir.
-        
+
         > **Not:** Güvenlik açığı bildirimleri için lütfen doğrudan `destek@gulsen.dev` adresine yazın.
 
   - type: input
@@ -51,16 +51,15 @@ body:
       required: true
 
   - type: dropdown
-    id: version
+    id: frequency
     attributes:
-      label: Uygulama Sürümü
-      description: Kullandığınız versiyonu seçin (Giriş ekranında yazar).
+      label: Hata Sıklığı
+      description: Bu hatayla ne sıklıkla karşılaşıyorsunuz?
       options:
-        - v1.5.1-beta.1
-        - v1.5.0
-        - v1.4.1
-        - v1.4.0
-        - Daha eski
+        - Her seferinde (Her denemede oluyor)
+        - Sık sık (Çoğu zaman oluyor)
+        - Nadiren (Bazen oluyor)
+        - Sadece bir kez oldu
     validations:
       required: true
 
@@ -87,20 +86,22 @@ body:
       required: true
 
   - type: textarea
-    id: expected
+    id: environment
     attributes:
-      label: Beklenen Davranış
-      description: Normalde ne olmasını bekliyordunuz?
-      placeholder: "Kayıt işleminin başarıyla tamamlanıp liste ekranına dönmesi gerekiyordu."
+      label: Ortam Bilgileri
+      description: Hangi işletim sistemi veya cihazda yaşanıyor?
+      placeholder: "Windows 11, 1920x1080 çözünürlük, Kablolu ağ bağlantısı..."
     validations:
       required: false
 
   - type: textarea
-    id: logs
+    id: media
     attributes:
-      label: Hata Kayıtları (Varsa)
-      description: Varsa hata mesajını veya log dosyasının içeriğini buraya yapıştırın.
-      render: shell
+      label: Ekran Görüntüsü / Video
+      description: |
+        Varsa hatanın ekran görüntüsünü veya videosunu buraya sürükleyip bırakabilirsiniz.
+        Görsel eklemek sorunu daha hızlı çözmemize yardımcı olur.
+      placeholder: "Buraya resim yapıştırın veya sürükleyin..."
     validations:
       required: false
 

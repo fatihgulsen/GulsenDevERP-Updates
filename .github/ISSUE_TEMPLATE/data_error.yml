@@ -1,0 +1,61 @@
+name: 📊 Veri Hatası / Hesaplama Yanlışlığı
+description: "Veriler, hesaplamalar veya raporlar yanlış mı?"
+title: "[DATA] "
+labels: ["data-integrity", "critical", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📊 Veri Doğruluk Bildirimi
+        **Bu bölüm kritiktir.** Hesaplama veya raporlama hataları için lütfen somut örnek verin.
+
+  - type: input
+    id: license
+    attributes:
+      label: Müşteri No / Lisans Anahtarı
+      description: Sorunun önceliklendirilmesi için gereklidir.
+      placeholder: "Örn: GULSEN-2024-XXXX"
+    validations:
+      required: true
+  
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Sorunun Etkisi
+      description: Bu hata finansal veya operasyonel risk yaratıyor mu?
+      options:
+        - 🔴 E-Fatura/Muhasebe Kaydı Yanlış (Kritik)
+        - 🟠 Stok Miktarı Hatalı (Önemli)
+        - 🟡 Rapordaki Toplam Yanlış
+        - 🟢 Sadece Ekranda Yanlış Görünüyor
+    validations:
+      required: true
+
+  - type: textarea
+    id: record_id
+    attributes:
+      label: Kayıt Numarası / Belge No
+      description: Hatalı olan kaydın numarası nedir? (Fatura No, Sipariş No vb.)
+      placeholder: "FAT-2024-00123 numaralı fatura..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: calculation
+    attributes:
+      label: Hesaplama Detayı
+      description: |
+        Neyin yanlış olduğunu düşünüyorsunuz?
+        Örnek: "KDV dahil 120 TL olması gerekirken 118 TL hesaplıyor."
+      placeholder: "Beklenen: 120 TL, Hesaplanan: 118 TL..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: recent_changes
+    attributes:
+      label: Son Yapılan Değişiklikler
+      description: Bu hata öncesinde bir güncelleme yapıldı mı veya ayar değiştirildi mi?
+      placeholder: "Dün KDV oranlarını güncellemiştik, ondan sonra oldu..."
+    validations:
+      required: false
