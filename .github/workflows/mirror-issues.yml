@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Create Issue in Main Repo
         env:
-          MAIN_REPO_TOKEN: ${{ secrets.MAIN_REPO_TOKEN }}
+          GH_TOKEN: ${{ secrets.MAIN_REPO_TOKEN }}
         run: |
           # Build a body that includes original issue metadata
           ORIGINAL_URL="${{ github.event.issue.html_url }}"
