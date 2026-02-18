@@ -1,30 +1,40 @@
 name: 🐞 Bir Sorun Bildir
-description: Program çalışırken hata mı verdi? Buradan bildirin.
+description: Program hata veriyor, bir tuş çalışmıyor, ekran açılmıyor gibi durumlar için.
 title: "[HATA] "
 labels: ["bug", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## 👋 Sorun Bildirim Formu
-        Yaşadığınız sorunu çözmemiz için lütfen aşağıdaki soruları cevaplayın.
-        
-        > **İpucu:** Sorunu ne kadar net anlatırsanız o kadar hızlı çözeriz.
+        ## Sorun Bildirim Formu
+        Bu form ile yaşadığınız sorunu bize detaylıca aktarabilirsiniz.
+        Ne kadar detay verirseniz, sorunu o kadar hızlı çözeriz.
 
+  # ── Kimlik ──
   - type: input
     id: license
     attributes:
-      label: Müşteri No / Lisans Anahtarı
-      description: Destek paketinizin doğrulanması için gereklidir.
+      label: 🔑 Müşteri No / Lisans Anahtarı
+      description: Size iletilen lisans bilginizi girin.
       placeholder: "Örn: GULSEN-2024-XXXX"
     validations:
       required: true
 
-  - type: dropdown
-    id: severity
+  - type: input
+    id: username
     attributes:
-      label: Ne Kadar Acil?
-      description: Bu sorun işinizi yapmanıza engel oluyor mu?
+      label: 👤 Kullanıcı Adınız
+      description: Programa giriş yaparken kullandığınız kullanıcı adınız.
+      placeholder: "Örn: muhasebe1, ayse.yilmaz"
+    validations:
+      required: true
+
+  # ── Sorunun Bağlamı ──
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: ⏰ Ne Kadar Acil?
+      description: Bu sorun şu an işinizi yapmanıza engel mi?
       options:
         - 🔴 Çok Acil (İşlem yapamıyorum, işim durdu)
         - 🟠 Önemli (Bazı özellikler çalışmıyor ama idare ediyorum)
@@ -36,46 +46,121 @@ body:
   - type: dropdown
     id: module
     attributes:
-      label: İlgili Bölüm
-      description: Hangi ekranda sorun yaşıyorsunuz?
+      label: 📂 Hangi Bölümde?
+      description: Hatanın olduğu ekranı seçin.
       options:
         - Stok İşlemleri
         - Satış & Fatura
         - Satınalma
         - Üretim
         - Muhasebe / Finans
-        - Personel
-        - Ayarlar
+        - Personel / İK
+        - Raporlar
+        - Ayarlar / Tanımlar
+        - Giriş Ekranı (Login)
         - Diğer
     validations:
       required: true
 
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: 🔁 Ne Sıklıkla Oluyor?
+      description: Bu hatayı ne zaman ve kaç kez yaşadınız?
+      options:
+        - Her denediğimde oluyor
+        - Çoğu zaman oluyor ama bazen olmuyor
+        - Nadiren oluyor, belirli bir düzeni yok
+        - Sadece bir kez oldu
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: 👥 Başkalarında da Oluyor mu?
+      description: Bu sorunu ofisteki diğer kişiler de yaşıyor mu?
+      options:
+        - Sadece bende oluyor
+        - Birkaç kişide daha var
+        - Ofisteki herkes aynı hatayı alıyor
+        - Bilmiyorum, sormadım
+    validations:
+      required: true
+
+  # ── Detaylı Bilgi ──
   - type: textarea
     id: description
     attributes:
-      label: Sorun Nedir?
-      description: Ne yapmaya çalışıyordunuz ve program ne yaptı?
-      placeholder: "Fatura kaydet tuşuna basınca hiçbir şey olmuyor..."
+      label: 📝 Ne Oldu?
+      description: |
+        Ne yapmaya çalışıyordunuz ve program ne yaptı?
+        Mümkünse "şunu yaptım → bunu bekliyordum → ama şu oldu" şeklinde yazın.
+      placeholder: |
+        Fatura kaydet tuşuna bastım.
+        Kaydolmasını bekliyordum.
+        Ama "Bağlantı hatası" diye bir mesaj çıktı ve fatura kaydolmadı.
     validations:
       required: true
 
   - type: textarea
     id: steps
     attributes:
-      label: Nasıl Oldu?
-      description: Biz de denersek aynı hatayı alır mıyız? Adımları yazar mısınız?
+      label: 🔄 Adım Adım Ne Yaptınız?
+      description: Bu hatayı almak için sırayla ne yaptınız? (Biz de aynısını deneyeceğiz)
       placeholder: |
-        1. Fatura ekranını açtım.
-        2. Müşteriyi seçtim.
-        3. Kaydet dedim ve hata mesajı çıktı.
+        1. Sol menüden "Satış Faturaları"na tıkladım.
+        2. Sağ üstteki "Yeni Fatura" butonuna bastım.
+        3. Müşteri olarak "ABC Kimya Ltd." seçtim.
+        4. Ürün ekledim ve "Kaydet" dedim.
+        5. O anda hata mesajı çıktı.
     validations:
       required: true
 
   - type: textarea
-    id: media
+    id: error_message
     attributes:
-      label: Ekran Görüntüsü
-      description: Varsa hatanın fotoğrafını veya ekran görüntüsünü buraya yapıştırın.
-      placeholder: "Resmi buraya yapıştırın..."
+      label: ⚠️ Hata Mesajı (Varsa)
+      description: |
+        Ekranda bir hata mesajı çıktıysa, lütfen metnini buraya kopyalayın.
+        Kopyalayamıyorsanız fotoğrafını çekip aşağıdaki "Ekran Görüntüsü" bölümüne ekleyebilirsiniz.
+      render: shell
     validations:
       required: false
+
+  - type: textarea
+    id: media
+    attributes:
+      label: 📸 Ekran Görüntüsü / Fotoğraf
+      description: |
+        Hatanın görüntüsünü buraya yapıştırın (CTRL+V) veya sürükleyin.
+        Telefondan fotoğraf çektiyseniz onu da ekleyebilirsiniz.
+      placeholder: "Görsel dosyasını buraya sürükleyin veya yapıştırın..."
+    validations:
+      required: false
+
+  # ── Tanısal Bilgiler ──
+  - type: checkboxes
+    id: troubleshooting
+    attributes:
+      label: ✅ Bunları Denediniz mi?
+      description: Aşağıdakileri zaten denediyseniz işaretleyin, böylece biz tekrar aynı şeyleri önermeyiz.
+      options:
+        - label: Programı kapatıp tekrar açtım, sorun devam ediyor.
+        - label: Bilgisayarımı yeniden başlattım, sorun devam ediyor.
+        - label: İnternete bağlıyım ve diğer siteler açılıyor.
+        - label: Aynı işlemi başka bir bilgisayarda denedim.
+
+  - type: dropdown
+    id: recent_change
+    attributes:
+      label: 🕐 Bu Sorun Ne Zaman Başladı?
+      description: Bu hata daha önce de var mıydı yoksa yeni mi başladı?
+      options:
+        - Her zaman böyleydi, ilk kez bildiriyorum
+        - Son güncellemeyi aldıktan sonra başladı
+        - Son birkaç gündür oluyor
+        - Bugün aniden başladı
+        - Bilmiyorum
+    validations:
+      required: true

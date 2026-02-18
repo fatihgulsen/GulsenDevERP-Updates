@@ -1,59 +1,98 @@
 name: 📊 Hesaplama / Bakiye Yanlış
-description: "Rakamlar tutmuyor, hesap yanlış" diyorsanız.
+description: "Rakamlar tutmuyor, stok eksi gösteriyor, KDV yanlış" gibi durumlar için.
 title: "[HESAP] "
 labels: ["data-integrity", "critical", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## 📊 Hesaplama Hatası Bildirimi
-        "Burası 100 TL olması gerekirken 90 TL çıkıyor" gibi durumları buradan bildirin.
+        ## Hesaplama / Veri Tutarsızlığı Bildirimi
+        Bu tür sorunlar kritik olarak ele alınır. Lütfen somut örnek verin.
 
+  # ── Kimlik ──
   - type: input
     id: license
     attributes:
-      label: Müşteri No / Lisans Anahtarı
-      description: Destek paketinizin doğrulanması için gereklidir.
+      label: 🔑 Müşteri No / Lisans Anahtarı
       placeholder: "Örn: GULSEN-2024-XXXX"
     validations:
       required: true
-  
-  - type: dropdown
-    id: impact
+
+  - type: input
+    id: username
     attributes:
-      label: Hata Nerede?
+      label: 👤 Kullanıcı Adınız
+      description: Programa giriş yaparken kullandığınız kullanıcı adınız.
+      placeholder: "Örn: muhasebe1"
+    validations:
+      required: true
+
+  # ── Sorunun Niteliği ──
+  - type: dropdown
+    id: type
+    attributes:
+      label: 📂 Hata Nerede?
+      description: Hangi tür bir tutarsızlık var?
       options:
-        - Muhasebe Bakiyesi Yanlış (Kritik)
-        - Stok Miktarı Yanlış
-        - Rapordaki Toplam Yanlış
-        - Fatura KDV/Toplam Hesabı Yanlış
+        - Cari Hesap Bakiyesi Yanlış
+        - Stok Miktarı Yanlış (Eksi gösteriyor / Tutmuyor)
+        - Fatura KDV veya Toplam Hesabı Yanlış
+        - İskonto Hesabı Yanlış
+        - Rapordaki Rakamlar Tutar ile Uyuşmuyor
         - Diğer
+    validations:
+      required: true
 
   - type: input
     id: record_ref
     attributes:
-      label: Hangi Kayıtta?
-      description: Sorunlu olan Fatura No, Sipariş No veya Stok Kodu nedir?
-      placeholder: "FAT-2024-00123..."
+      label: 🔢 Hangi Belge / Kayıt?
+      description: Sorunun olduğu belge numarasını yazın.
+      placeholder: "FAT-2024-00123, SIP-2024-00456, STK-TR001 gibi..."
     validations:
       required: true
 
   - type: textarea
     id: calculation
     attributes:
-      label: Ne Olması Gerekiyordu?
+      label: 📝 Doğrusu Ne, Yanlışı Ne?
       description: |
-        Sizce doğru rakam ne? Program ne gösteriyor?
-        Örnek: "Alt toplam 100 TL, KDV 20 TL iken Toplam 120 TL olmalı ama 118 TL yazıyor."
-      placeholder: "Doğrusu: ... , Programdaki Hatalı: ..."
+        Programın gösterdiği ile olması gereken arasındaki farkı yazın.
+        Ne kadar somut yazarsanız o kadar çabuk çözeriz.
+      placeholder: |
+        Programda Gösterilen: KDV dahil toplam 1.180 TL
+        Doğrusu: KDV dahil toplam 1.200 TL
+        
+        Açıklama: %20 KDV ile 1.000 TL mal = 1.200 TL olmalı
     validations:
       required: true
 
   - type: textarea
     id: evidence
     attributes:
-      label: Resim / Ekran Görüntüsü
-      description: Yanlış olan yerin resmini buraya yapıştırın.
+      label: 📸 Ekran Görüntüsü
+      description: Hatalı rakamın göründüğü ekranın resmini buraya yapıştırın.
       placeholder: "Resmi buraya yapıştırın (CTRL+V)..."
     validations:
       required: false
+
+  # ── Tanısal ──
+  - type: dropdown
+    id: recent_change
+    attributes:
+      label: 🕐 Ne Zaman Fark Ettiniz?
+      options:
+        - Daha önce doğruydu, şimdi yanlış oldu
+        - İlk kez fark ediyorum, ne zamandır böyle bilmiyorum
+        - Bir ayar değişikliğinden sonra fark ettik
+        - Son güncellemeyi aldıktan sonra başladı
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: ✅ Kontrol Ettiniz mi?
+      options:
+        - label: Manuel hesap yaptığımda sonuç programdakinden farklı çıkıyor.
+        - label: Aynı belgeyi başka bir kullanıcı açınca da aynı yanlış rakamı görüyor.

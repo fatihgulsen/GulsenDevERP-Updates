@@ -1,46 +1,58 @@
-name: ⚡ Program Yavaş Çalışıyor
-description: "Çok bekletiyor, donuyor" dediğiniz durumlar için.
+name: ⚡ Program Yavaş / Donuyor
+description: Sistem geç açılıyor, bekletiyor veya donuyorsa buradan bildirin.
 title: "[HIZ] "
 labels: ["performance", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## 🚀 Yavaşlık Bildirim Formu
-        Hangi işlemin yavaş olduğunu bulmamız için bize yardımcı olun.
+        ## Yavaşlık / Donma Bildirim Formu
+        Sorunun sizde mi yoksa sistemde mi olduğunu anlamamıza yardımcı olun.
 
+  # ── Kimlik ──
   - type: input
     id: license
     attributes:
-      label: Müşteri No / Lisans Anahtarı
-      description: Destek paketinizin doğrulanması için gereklidir.
+      label: 🔑 Müşteri No / Lisans Anahtarı
       placeholder: "Örn: GULSEN-2024-XXXX"
     validations:
       required: true
-  
+
+  - type: input
+    id: username
+    attributes:
+      label: 👤 Kullanıcı Adınız
+      description: Programa giriş yaparken kullandığınız kullanıcı adınız.
+      placeholder: "Örn: depo1, fatih.odeme"
+    validations:
+      required: true
+
+  # ── Sorunun Bağlamı ──
   - type: dropdown
     id: scope
     attributes:
-      label: Kimde Sorun Var?
-      description: Sadece sizde mi yoksa herkeste mi yavaş?
+      label: 👥 Kimde Sorun Var?
+      description: Sadece sizde mi yoksa ofiste herkes etkileniyor mu?
       options:
-        - Sadece benim bilgisayarımda
-        - Ofisteki birkaç kişide
-        - Tüm şirkette sistem yavaş
+        - Sadece bende oluyor
+        - Birkaç kişide daha var
+        - Ofisteki herkes yavaşlıktan şikayetçi
+        - Bilmiyorum
     validations:
       required: true
 
   - type: dropdown
     id: where
     attributes:
-      label: Ne Yaparken Yavaşlıyor?
-      description: En çok hangi işlemde bekletiyor?
+      label: 📂 Ne Yaparken Yavaşlıyor?
+      description: En çok hangi işlemde bekletiyorsunuz?
       options:
-        - Programa Giriş Yaparken (Login)
-        - Kaydet Butonuna Basınca
-        - Rapor Çekerken / Listeleme Yaparken
-        - Arama Yaparken
-        - Sayfa Geçişlerinde
+        - Programa giriş yaparken (Login ekranı)
+        - Kayıt oluştururken veya güncellerken (Kaydet butonu)
+        - Rapor çekerken veya listeleme yaparken
+        - Arama / Filtreleme yaparken
+        - Ekranlar arası geçişte
+        - Program ilk açılışta
         - Diğer
     validations:
       required: true
@@ -48,8 +60,35 @@ body:
   - type: textarea
     id: details
     attributes:
-      label: Detaylı Açıklama
-      description: Mesela "Fatura listesini açarken bazen 1 dakika bekliyorum" gibi yazabilirsiniz.
-      placeholder: "Fatura listesini açtığımda verilerin gelmesi yaklaşık 20 saniye sürüyor..."
+      label: 📝 Detaylı Açıklama
+      description: |
+        Hangi ekranda ne kadar bekliyorsunuz?
+        Örneğin "Fatura listesini açınca yaklaşık 30 saniye bekliyorum" gibi.
+      placeholder: "Stok raporu çekmek istediğimde 1 dakikadan fazla bekliyorum, sonra sonuç geliyor..."
     validations:
       required: true
+
+  - type: dropdown
+    id: timing
+    attributes:
+      label: 🕐 Ne Zaman Başladı?
+      description: Bu yavaşlık yeni mi başladı yoksa hep böyle miydi?
+      options:
+        - Her zaman böyleydi
+        - Son güncellemeyi aldıktan sonra başladı
+        - Son birkaç gündür oluyor
+        - Bugün aniden başladı
+        - Bilmiyorum
+    validations:
+      required: true
+
+  # ── Tanısal ──
+  - type: checkboxes
+    id: troubleshooting
+    attributes:
+      label: ✅ Bunları Kontrol Ettiniz mi?
+      options:
+        - label: Bilgisayarımı yeniden başlattım ama düzelmedi.
+        - label: İnternet bağlantım normal, diğer site/programlarda sorun yok.
+        - label: Aynı işlemi başka bir bilgisayarda denedim, onda da yavaş.
+        - label: Bilgisayarda başka hiçbir program açık değilken de yavaş.

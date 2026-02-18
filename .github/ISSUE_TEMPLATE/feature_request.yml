@@ -1,61 +1,75 @@
 name: 💡 Yeni Özellik / Öneri
-description: "Şunun da olmasını isterim" dediğiniz fikirleriniz için.
+description: "Keşke şöyle bir buton olsa, bu rapor eksik" gibi fikirleriniz için.
 title: "[ÖNERİ] "
 labels: ["enhancement", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## 👋 Fikir ve Öneri Formu
-        İşinizi kolaylaştıracak bir fikir mi var? Paylaşın, değerlendirelim.
+        ## Fikir ve Öneri Formu
+        İşinizi kolaylaştıracak bir fikriniz mi var? Paylaşın, birlikte değerlendirelim.
 
+  # ── Kimlik ──
   - type: input
     id: license
     attributes:
-      label: Müşteri No / Lisans Anahtarı
-      description: Talebin önceliklendirilmesi için gereklidir.
+      label: 🔑 Müşteri No / Lisans Anahtarı
       placeholder: "Örn: GULSEN-2024-XXXX"
     validations:
       required: true
-  
-  - type: dropdown
-    id: importance
-    attributes:
-      label: Ne Kadar Önemli?
-      options:
-        - 🟢 Olsa güzel olur (Zaman kazandırır)
-        - 🟡 Önemli (İşimi çok hızlandırır)
-        - 🔴 Kritik (Bu özellik olmadığı için zorlanıyoruz)
 
+  - type: input
+    id: username
+    attributes:
+      label: 👤 Kullanıcı Adınız
+      description: Hangi rolde kullanıyorsunuz? (Muhasebe, Depo, Satış vs.)
+      placeholder: "Örn: muhasebe1 (Muhasebe Sorumlusu)"
+    validations:
+      required: true
+
+  # ── İçerik ──
   - type: dropdown
     id: module
     attributes:
-      label: Hangi Bölümle İlgili?
+      label: 📂 Hangi Bölümle İlgili?
       options:
         - Stok İşlemleri
         - Fatura / Sipariş
         - Üretim
         - Muhasebe / Finans
-        - Mobil Uygulama
+        - Personel / İK
         - Raporlar
-        - Genel Kullanım
+        - Genel Kullanım / Arayüz
+        - Mobil Uygulama
         - Diğer
 
-  - type: textarea
-    id: problem
+  - type: dropdown
+    id: importance
     attributes:
-      label: Şu Anki Zorluk Nedir?
-      description: "Şu an bu işi yaparken ne sizi yoruyor veya zorluyor?"
-      placeholder: "Siparişleri tek tek seçip faturaya aktarmak çok zaman alıyor..."
+      label: ⭐ Sizin İçin Ne Kadar Önemli?
+      options:
+        - Olsa güzel olur, ama şu an idare ediyorum
+        - Önemli, bu olsa işim çok hızlanır
+        - Çok önemli, bunun olmaması bizi ciddi zorluyor
+
+  - type: textarea
+    id: current_problem
+    attributes:
+      label: 📝 Şu An Nasıl Yapıyorsunuz?
+      description: Bu işlemi şu an programda nasıl çözüyorsunuz? Neyi zor buluyorsunuz?
+      placeholder: "Şu an siparişleri tek tek açıp faturaya çeviriyorum, 50 siparişte 1 saat sürüyor..."
     validations:
       required: true
 
   - type: textarea
-    id: solution
+    id: desired_solution
     attributes:
-      label: Hayalinizdeki Çözüm
-      description: "Nasıl olsa daha iyi olurdu?"
-      placeholder: "Listede bir buton olsa, seçtiklerimi tek tıkla aktarsa..."
+      label: 💭 Nasıl Olmasını İsterdiniz?
+      description: Hayal ettiğiniz çözüm nasıl olurdu? Ekran tasarımı, buton yeri vs. anlatabilirsiniz.
+      placeholder: |
+        Sipariş listesinde birden fazla sipariş seçip
+        "Toplu Faturalaştır" diye bir butona bassam ve
+        hepsi tek seferde faturaya dönse harika olurdu.
     validations:
       required: true
 
@@ -64,5 +78,5 @@ body:
     attributes:
       label: Onay
       options:
-        - label: Bu önerinin diğer kullanıcılar için de yapılabileceğini kabul ediyorum.
+        - label: Bu önerinin diğer firmalardaki kullanıcılar için de yapılabileceğini kabul ediyorum.
           required: true
