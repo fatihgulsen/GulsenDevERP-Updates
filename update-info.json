@@ -1,0 +1,14 @@
+{
+  "Version": {
+    "Version": "1.5.0",
+    "BuildDate": "20260218",
+    "Channel": "beta"
+  },
+  "IsMandatory": false,
+  "ReleaseDate": "2026-02-18T12:00:43Z",
+  "DownloadUrl": "https://github.com/fatihgulsen/Gulsen.dev-ERP/releases/download/v1.5.0/update.zip",
+  "Size": 183503415,
+  "Checksum": "A7ED02A772AEC2632FD9B3850D916EC2C82E4897C222EEABA55FABC31A9F8081",
+  "RequiredMigrations": [],
+  "ReleaseNotes": "Automated release 1.5.0"
+}
