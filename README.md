@@ -69,10 +69,9 @@ Hayır. Tüm veriler merkezi sunucuda saklanır; güncelleme veya yeniden kurulu
 ## 📞 Destek
 
 - 📧 **E-posta:** destek@gulsen.dev
-- 🐛 **Hata Bildirimi:** [GitHub Issues](https://github.com/fatihgulsen/Gulsen.dev-ERP/issues)
 
 ---
 
 ## 📋 Sürüm Geçmişi
 
-Tüm değişiklikler için: [CHANGELOG.md](https://github.com/fatihgulsen/Gulsen.dev-ERP/blob/master/CHANGELOG.md)
+Tüm değişiklikler için bu repodaki [CHANGELOG.md](./CHANGELOG.md) dosyasına bakın.
